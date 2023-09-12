@@ -9,9 +9,9 @@ import pandas as pd
 import torch.utils.data as Data
 import datetime
 # cell
-ge_folder = "data/"
-ge_ae_save = "saved/Cell_line_RMA_proc_basalExp.pt"
-model_save_path = "saved/auto_encoder.pt"
+ge_folder = "./data/"
+ge_ae_save = "./saved/Cell_line_RMA_proc_basalExp.pt"
+model_save_path = "./saved/auto_encoder.pt"
 device="cuda"
 os.environ["CUDA_VISIBLE_DEVICES"]="1"
 
@@ -115,7 +115,7 @@ def main():
     print(f"Cell Features: {cell_features.shape[0]}")
 
     # dimension reduction(gene expression data)
-    ge_ae = Auto_Encoder(device, ge_indim, 400)
+    ge_ae = Simple_Auto_Encoder(device, ge_indim, 512)
     train_list = random.sample((cell_features).tolist(), int(0.9 * len(cell_features)))
     test_list = [item for item in (cell_features).tolist() if item not in train_list]
     train=torch.tensor(train_list).float().to(device)

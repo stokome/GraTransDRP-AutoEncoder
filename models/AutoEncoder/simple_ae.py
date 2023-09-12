@@ -3,7 +3,7 @@ import torch.nn as nn
 
 class Simple_Auto_Encoder(nn.Module):
     def __init__(self, device, indim, outdim=512):
-        super(Auto_Encoder, self).__init__()
+        super(Simple_Auto_Encoder, self).__init__()
         self.encoder = Encoder(device=device,indim=indim,outdim=outdim)
         self.decoder = Decoder(device=device,outdim=indim,indim=outdim)
 
