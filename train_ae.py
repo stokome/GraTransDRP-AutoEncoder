@@ -8,6 +8,7 @@ from sklearn.preprocessing import scale, MinMaxScaler
 import pandas as pd
 import torch.utils.data as Data
 import datetime
+from models.AutoEncoder import Simple_Auto_Encoder
 # cell
 ge_folder = "./data/"
 ge_ae_save = "./saved/Cell_line_RMA_proc_basalExp.pt"
