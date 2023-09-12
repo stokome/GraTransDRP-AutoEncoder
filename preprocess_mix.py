@@ -462,10 +462,17 @@ def save_mix_drug_cell_matrix(choice):
         # PCA
         pca = PCA(n_components=1000)
         cell_feature_ge = pca.fit_transform(cell_feature_ge)
-    else:
+    elif choice == 2:
         #Isomap
         isomap = Isomap(n_components=480)
         cell_feature_ge = isomap.fit_transform(cell_feature_ge)
+    elif choice == 3:
+        #AutoEncoder
+        simple_autoencoder = torch.load("/content/saved/auto_encoder.pt")
+        cell_feature_ge = torch.tensor(cell_feature_ge).float().to("cuda")
+        cell_feature_ge = simple_autoencoder.output(cell_feature_ge)
+        cell_feature_ge = cell_feature_ge.to("cpu").detach().numpy()
+        print(f"Shape of gene expression after encoding: {cell_feature_ge.shape}")
 
     for data in temp_data:
         drug, cell, ic50 = data
